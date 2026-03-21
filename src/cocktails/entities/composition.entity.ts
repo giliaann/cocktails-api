@@ -1,14 +1,14 @@
 import { Ingredient } from 'src/ingredients/entities/ingredient.entity';
-import {Entity, Column, ManyToOne, PrimaryGeneratedColumn, JoinColumn} from 'typeorm'
+import {Entity, Column, ManyToOne, PrimaryColumn, JoinColumn} from 'typeorm'
 import { Cocktail } from './cocktail.entity';
 
 @Entity('compositions')
 export class Composition {
     
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     cocktail_id: number;
 
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     ingredient_id: number;
 
     @Column({type: 'varchar', length: 255})

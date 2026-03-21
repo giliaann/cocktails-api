@@ -1,4 +1,10 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateIngredientDto } from './create-ingredient.dto';
+import * as z from 'zod'
+import { CreateIngredientDto, createIngredientSchema } from './create-ingredient.dto';
+import { createZodDto } from 'nestjs-zod';
 
-export class UpdateIngredientDto extends PartialType(CreateIngredientDto) {}
+
+export const updateIngredientSchema = createIngredientSchema.partial();
+
+
+export class UpdateIngredientDto extends createZodDto(updateIngredientSchema){};
+

@@ -1,4 +1,8 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateCocktailDto } from './create-cocktail.dto';
+import * as z from 'zod';
+import { createCocktailSchema } from './create-cocktail.dto';
+import { createZodDto } from 'nestjs-zod';
 
-export class UpdateCocktailDto extends PartialType(CreateCocktailDto) {}
+export const updateCocktailSchema = createCocktailSchema.partial();
+
+export class UpdateCocktailDto extends createZodDto(updateCocktailSchema){};
+
