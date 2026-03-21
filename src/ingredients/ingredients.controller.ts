@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { IngredientsService } from './ingredients.service';
 import { CreateIngredientDto, createIngredientSchema } from './dto/create-ingredient.dto';
 import { UpdateIngredientDto, updateIngredientSchema } from './dto/update-ingredient.dto';
 import { ZodValidationPipe } from 'src/common/pipes/zod-validation.pipe';
+import { GetIngredientsFilterDto, getIngredientsFilterSchema } from './dto/get-ingredients.dto';
 
 @Controller('ingredients')
 export class IngredientsController {
@@ -14,8 +15,8 @@ export class IngredientsController {
   }
 
   @Get()
-  findAll() {
-    return this.ingredientsService.findAll();
+  findAll(@Query(new ZodValidationPipe(getIngredientsFilterSchema)) filterDto: GetIngredientsFilterDto) {
+    return this.ingredientsService.findAll(filterDto);
   }
 
   @Get(':id')

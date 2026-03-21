@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Cocktail } from './entities/cocktail.entity';
 import { Composition } from './entities/composition.entity';
 import { Repository } from 'typeorm';
+import { GetCocktailsFilterDto } from './dto/get-cocktails-filter.dto';
 
 @Injectable()
 export class CocktailsService {
@@ -33,10 +34,58 @@ export class CocktailsService {
 
   }
 
-  async findAll(): Promise<Cocktail[]> {
-    return await this.cocktailRepository.find({
-      relations: {compositions: {ingredient: true}}
-    })
+  async findAll(filterDto: GetCocktailsFilterDto) {
+    const {search, category, alcoholic, ingredientName, sortBy, sortOrder, page, limit} = filterDto;
+
+    const query = this.cocktailRepository.createQueryBuilder('cocktail')
+      .leftJoinAndSelect('cocktail.compositions', 'composition')
+      .leftJoinAndSelect('composition.ingredient', 'ingredient');
+
+    if (search){
+      query.andWhere('cocktail.name ILIKE :search', { search: `%${search}%`});
+    }
+
+    if (category){
+      query.andWhere('cocktail.category = :category', {category})
+    }
+
+    if (alcoholic !== undefined){
+      query.andWhere('cocktail.alcoholic = :alcoholic', {alcoholic})
+    }
+
+    if(ingredientName) {
+      query.andWhere((qb) => {
+        const subQuery = qb.subQuery()
+          .select('c.id')
+          .from('cocktails', 'c')
+          .innerJoin('compositions', 'comp', 'comp.cocktail_id = c.id')
+          .innerJoin('ingredients', 'ing', 'comp.ingredient_id = ing.id')
+          .where('ing.name ILIKE :ingredientName')
+          .getQuery()
+
+       return `cocktail.id IN ${subQuery}`;
+      }).setParameter('ingredientName', `%${ingredientName}%`);
+    }
+
+    if(sortBy){
+      query.orderBy(`cocktail.${sortBy}`, sortOrder);
+    }
+
+    const skip = (page - 1) * limit;
+    query.skip(skip).take(limit);
+
+    const [items, total] = await query.getManyAndCount();
+
+    return {
+      data: items,
+      meta: {
+        totalItems: total,
+        itemCount: items.length,
+        itemsPerPage: limit,
+        totalPages: Math.ceil(total / limit),
+        currentPage: page,
+      }
+    }
   }
 
   async findOne(id: number): Promise<Cocktail> {
@@ -62,7 +111,7 @@ export class CocktailsService {
     });
 
     if (!cocktail){
-      throw new NotFoundException('Cocktail with ID ${id} not found')
+      throw new NotFoundException(`Cocktail with ID ${id} not found`)
     }
 
     if (compositions) {

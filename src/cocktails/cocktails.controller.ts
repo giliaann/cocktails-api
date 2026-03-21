@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, Query } from '@nestjs/common';
 import { CocktailsService } from './cocktails.service';
 import { CreateCocktailDto, createCocktailSchema } from './dto/create-cocktail.dto';
 import { UpdateCocktailDto, updateCocktailSchema } from './dto/update-cocktail.dto';
 import { ZodValidationPipe } from 'src/common/pipes/zod-validation.pipe';
+import { GetCocktailsFilterDto, getCocktailsFilterSchema } from './dto/get-cocktails-filter.dto';
 
 @Controller('cocktails')
 export class CocktailsController {
@@ -15,8 +16,8 @@ export class CocktailsController {
   }
 
   @Get()
-  findAll() {
-    return this.cocktailsService.findAll();
+  findAll(@Query(new ZodValidationPipe(getCocktailsFilterSchema)) filterDto: GetCocktailsFilterDto) {
+    return this.cocktailsService.findAll(filterDto);
   }
 
   @Get(':id')

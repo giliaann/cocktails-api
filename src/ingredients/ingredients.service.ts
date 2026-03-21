@@ -4,6 +4,7 @@ import { UpdateIngredientDto } from './dto/update-ingredient.dto';
 import { Ingredient } from './entities/ingredient.entity';
 import { Repository } from 'typeorm'
 import { InjectRepository } from '@nestjs/typeorm';
+import { GetIngredientsFilterDto } from './dto/get-ingredients.dto';
 
 @Injectable()
 export class IngredientsService {
@@ -18,8 +19,43 @@ export class IngredientsService {
     return await this.ingredientRepository.save(ingredient);
   }
 
-  async findAll(): Promise <Ingredient[]> {
-    return await this.ingredientRepository.find()
+  async findAll(filterDto: GetIngredientsFilterDto){
+
+    const {search, category, alcoholic, sortBy, sortOrder, page, limit} = filterDto;
+
+    const query = this.ingredientRepository.createQueryBuilder('ingredient');
+
+    if(search){
+      query.andWhere('ingredient.name ILIKE :search', {search: `%${search}%`});
+    }
+
+    if(category){
+      query.andWhere('ingredient.category = :category', {category});
+    }
+
+    if (alcoholic!==undefined){
+      query.andWhere('ingredient.alcoholic = :alcoholic', {alcoholic});
+    }
+
+    if(sortBy){
+      query.orderBy(`ingredient.${sortBy}`, sortOrder);
+    }
+
+    const skip = (page - 1) * limit;
+    query.skip(skip).take(limit);
+
+    const [items, total] = await query.getManyAndCount();
+
+    return {
+      data: items,
+      meta: {
+        totalItems: total,
+        itemCount: items.length,
+        itemsPerPage: limit,
+        totalPages: Math.ceil(total/limit),
+        currentPage: page,
+      }
+    }
   }
 
   async findOne(id: number): Promise<Ingredient> {
