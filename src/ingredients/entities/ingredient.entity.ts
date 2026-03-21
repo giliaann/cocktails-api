@@ -21,16 +21,16 @@ export class Ingredient {
     category: IngredientCategory
 
     @Column({type: 'varchar', length: 25000, nullable: true})
-    description: string;
+    description: string | null;
     
     @Column({type: 'boolean', nullable: true})
-    alcoholic: boolean;
+    alcoholic: boolean | null;
 
     @Column({type: 'int', nullable: true})
-    percentage: number;
+    percentage: number | null;
     
     @Column({type: 'varchar', length: 500, nullable: true})
-    image_url: string;
+    image_url: string | null;
 
     @CreateDateColumn()
     created_at: Date;

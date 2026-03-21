@@ -7,9 +7,9 @@ export const createIngredientSchema = z.object({
     .min(1, {message: 'Invalid ingredient name'})
     .max(255),
 
-    category: z.enum(Object.values(IngredientCategory) as [string, ...string[]])
+    category: z.enum(IngredientCategory)
     .optional()
-    .default(IngredientCategory.OTHER as string),
+    .default(IngredientCategory.OTHER),
 
     description: z.string()
     .max(25000)

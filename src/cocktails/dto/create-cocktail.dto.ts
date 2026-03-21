@@ -10,9 +10,9 @@ export const createCocktailSchema = z.object({
     .min(1, {message: 'Cocktail name is obligatory'})
     .max(255, {message: 'Cocktail name max lenght it 255'}),
 
-    category: z.enum(Object.values(CocktailCategory) as [string, ...string[]])
+    category: z.enum(CocktailCategory)
     .optional()
-    .default(CocktailCategory.OTHER as string),
+    .default(CocktailCategory.OTHER),
 
     description: z.string()
     .max(25000, {message: 'Cocktail description max length is 25000'})
@@ -20,7 +20,7 @@ export const createCocktailSchema = z.object({
     .optional(),
 
     instruction: z.string()
-    .max(50000, {message: 'Cocktail instruction max length is 25000'})
+    .max(50000, {message: 'Cocktail instruction max length is 50000'})
     .nullable()
     .optional(),
 

@@ -1,26 +1,53 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateIngredientDto } from './dto/create-ingredient.dto';
 import { UpdateIngredientDto } from './dto/update-ingredient.dto';
+import { Ingredient } from './entities/ingredient.entity';
+import { Repository } from 'typeorm'
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class IngredientsService {
-  create(createIngredientDto: CreateIngredientDto) {
-    return 'This action adds a new ingredient';
+
+  constructor(
+    @InjectRepository(Ingredient)
+    private readonly ingredientRepository: Repository<Ingredient>
+  ) {}
+
+  async create(createIngredientDto: CreateIngredientDto): Promise <Ingredient> {
+    const ingredient = this.ingredientRepository.create(createIngredientDto);
+    return await this.ingredientRepository.save(ingredient);
   }
 
-  findAll() {
-    return `This action returns all ingredients`;
+  async findAll(): Promise <Ingredient[]> {
+    return await this.ingredientRepository.find()
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} ingredient`;
+  async findOne(id: number): Promise<Ingredient> {
+    const ingredient = await this.ingredientRepository.findOne({where: {id}});
+
+    if (!ingredient) {
+      throw new NotFoundException(`Ingredient with ID ${id} not found`);
+    }
+
+    return ingredient;
   }
 
-  update(id: number, updateIngredientDto: UpdateIngredientDto) {
-    return `This action updates a #${id} ingredient`;
+  async update(id: number, updateIngredientDto: UpdateIngredientDto): Promise<Ingredient> {
+    const ingredient = await this.ingredientRepository.preload({
+      id,
+      ...updateIngredientDto
+    })
+
+    if(!ingredient){
+      throw new NotFoundException(`Ingredient with ID ${id} not found`);
+    }
+
+    return await this.ingredientRepository.save(ingredient);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} ingredient`;
+  async remove(id: number): Promise <void> {
+    
+    const ingredient = await this.findOne(id);
+    await this.ingredientRepository.remove(ingredient)
   }
 }
