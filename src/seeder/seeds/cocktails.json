@@ -1,0 +1,218 @@
+[
+  {
+    "name": "Mojito",
+    "category": "Classic",
+    "description": "A refreshing traditional Cuban highball.",
+    "instruction": "1. Muddle mint leaves with simple syrup and lime juice. 2. Add rum and top with soda water. 3. Garnish with a mint sprig.",
+    "alcoholic": true,
+    "percentage": 12,
+    "image_url": "https://example.com/mojito.jpg",
+    "compositions": [
+      { "ingredient_id": 1, "measure": "50 ml" },
+      { "ingredient_id": 15, "measure": "25 ml" },
+      { "ingredient_id": 11, "measure": "20 ml" },
+      { "ingredient_id": 21, "measure": "8-10 leaves" },
+      { "ingredient_id": 23, "measure": "Top up" }
+    ]
+  },
+  {
+    "name": "Margarita",
+    "category": "Classic",
+    "description": "The most popular tequila-based cocktail.",
+    "instruction": "1. Rub the rim of the glass with lime and dip in salt. 2. Shake tequila, triple sec, and lime juice with ice. 3. Strain into the glass.",
+    "alcoholic": true,
+    "percentage": 25,
+    "image_url": "https://example.com/margarita.jpg",
+    "compositions": [
+      { "ingredient_id": 5, "measure": "50 ml" },
+      { "ingredient_id": 7, "measure": "20 ml" },
+      { "ingredient_id": 15, "measure": "15 ml" }
+    ]
+  },
+  {
+    "name": "Martini",
+    "category": "Classic",
+    "description": "A timeless classic gin cocktail.",
+    "instruction": "1. Pour gin and dry vermouth into a mixing glass with ice cubes. 2. Stir well. 3. Strain into a chilled martini cocktail glass.",
+    "alcoholic": true,
+    "percentage": 35,
+    "image_url": "https://example.com/martini.jpg",
+    "compositions": [
+      { "ingredient_id": 4, "measure": "60 ml" },
+      { "ingredient_id": 10, "measure": "10 ml" }
+    ]
+  },
+  {
+    "name": "Old Fashioned",
+    "category": "Classic",
+    "description": "A robust and balanced whiskey cocktail.",
+    "instruction": "1. Stir sugar syrup with bitters. 2. Add bourbon and ice. 3. Stir well and garnish with an orange twist.",
+    "alcoholic": true,
+    "percentage": 32,
+    "image_url": "https://example.com/old-fashioned.jpg",
+    "compositions": [
+      { "ingredient_id": 6, "measure": "50 ml" },
+      { "ingredient_id": 11, "measure": "10 ml" },
+      { "ingredient_id": 22, "measure": "2 dashes" }
+    ]
+  },
+  {
+    "name": "Piña Colada",
+    "category": "Tropical",
+    "description": "A sweet cocktail made with rum, coconut cream, and pineapple juice.",
+    "instruction": "1. Blend all ingredients with ice until smooth. 2. Pour into a chilled glass. 3. Garnish with a pineapple wedge.",
+    "alcoholic": true,
+    "percentage": 13,
+    "image_url": "https://example.com/pina-colada.jpg",
+    "compositions": [
+      { "ingredient_id": 1, "measure": "50 ml" },
+      { "ingredient_id": 18, "measure": "50 ml" },
+      { "ingredient_id": 29, "measure": "30 ml" }
+    ]
+  },
+  {
+    "name": "Cosmopolitan",
+    "category": "Classic",
+    "description": "A tart and slightly sweet vodka cocktail.",
+    "instruction": "1. Shake all ingredients with ice. 2. Strain into a cocktail glass. 3. Garnish with a lime wheel.",
+    "alcoholic": true,
+    "percentage": 22,
+    "image_url": "https://example.com/cosmopolitan.jpg",
+    "compositions": [
+      { "ingredient_id": 3, "measure": "40 ml" },
+      { "ingredient_id": 7, "measure": "15 ml" },
+      { "ingredient_id": 19, "measure": "30 ml" },
+      { "ingredient_id": 15, "measure": "15 ml" }
+    ]
+  },
+  {
+    "name": "Negroni",
+    "category": "Classic",
+    "description": "A popular Italian cocktail, perfectly balanced and bitter.",
+    "instruction": "1. Pour all ingredients directly into an old-fashioned glass filled with ice. 2. Stir gently. 3. Garnish with half an orange slice.",
+    "alcoholic": true,
+    "percentage": 24,
+    "image_url": "https://example.com/negroni.jpg",
+    "compositions": [
+      { "ingredient_id": 4, "measure": "30 ml" },
+      { "ingredient_id": 8, "measure": "30 ml" },
+      { "ingredient_id": 9, "measure": "30 ml" }
+    ]
+  },
+  {
+    "name": "Whiskey Sour",
+    "category": "Classic",
+    "description": "A classic balance of sweet and sour.",
+    "instruction": "1. Shake bourbon, lemon juice, and simple syrup with ice. 2. Strain into a rocks glass. 3. Garnish with a cherry.",
+    "alcoholic": true,
+    "percentage": 18,
+    "image_url": "https://example.com/whiskey-sour.jpg",
+    "compositions": [
+      { "ingredient_id": 6, "measure": "50 ml" },
+      { "ingredient_id": 16, "measure": "25 ml" },
+      { "ingredient_id": 11, "measure": "15 ml" },
+      { "ingredient_id": 30, "measure": "1 piece" }
+    ]
+  },
+  {
+    "name": "Daiquiri",
+    "category": "Classic",
+    "description": "A crisp, rum-based sour cocktail.",
+    "instruction": "1. Shake all ingredients well with ice. 2. Double strain into a chilled coupe glass.",
+    "alcoholic": true,
+    "percentage": 20,
+    "image_url": "https://example.com/daiquiri.jpg",
+    "compositions": [
+      { "ingredient_id": 1, "measure": "50 ml" },
+      { "ingredient_id": 15, "measure": "25 ml" },
+      { "ingredient_id": 11, "measure": "15 ml" }
+    ]
+  },
+  {
+    "name": "Mai Tai",
+    "category": "Tropical",
+    "description": "A quintessential Tiki cocktail.",
+    "instruction": "1. Shake all ingredients except dark rum with ice. 2. Strain into a glass with crushed ice. 3. Float dark rum on top.",
+    "alcoholic": true,
+    "percentage": 23,
+    "image_url": "https://example.com/mai-tai.jpg",
+    "compositions": [
+      { "ingredient_id": 1, "measure": "40 ml" },
+      { "ingredient_id": 7, "measure": "15 ml" },
+      { "ingredient_id": 14, "measure": "15 ml" },
+      { "ingredient_id": 15, "measure": "20 ml" },
+      { "ingredient_id": 2, "measure": "20 ml" }
+    ]
+  },
+  {
+    "name": "Cuba Libre",
+    "category": "Classic",
+    "description": "More than just a Rum and Coke, thanks to fresh lime.",
+    "instruction": "1. Fill a highball glass with ice. 2. Add rum and squeeze lime juice. 3. Top with cola and stir lightly.",
+    "alcoholic": true,
+    "percentage": 10,
+    "image_url": "https://example.com/cuba-libre.jpg",
+    "compositions": [
+      { "ingredient_id": 1, "measure": "50 ml" },
+      { "ingredient_id": 15, "measure": "10 ml" },
+      { "ingredient_id": 25, "measure": "Top up" }
+    ]
+  },
+  {
+    "name": "Moscow Mule",
+    "category": "Classic",
+    "description": "A spicy and refreshing vodka drink served in a copper mug.",
+    "instruction": "1. Combine vodka and ginger beer in a copper mug or highball glass filled with ice. 2. Add lime juice. 3. Stir gently.",
+    "alcoholic": true,
+    "percentage": 12,
+    "image_url": "https://example.com/moscow-mule.jpg",
+    "compositions": [
+      { "ingredient_id": 3, "measure": "50 ml" },
+      { "ingredient_id": 15, "measure": "15 ml" },
+      { "ingredient_id": 26, "measure": "Top up" }
+    ]
+  },
+  {
+    "name": "Gin and Tonic",
+    "category": "Classic",
+    "description": "A simple yet iconic highball.",
+    "instruction": "1. Fill a glass with ice. 2. Pour in gin. 3. Top with tonic water and garnish with a lime slice.",
+    "alcoholic": true,
+    "percentage": 10,
+    "image_url": "https://example.com/gin-tonic.jpg",
+    "compositions": [
+      { "ingredient_id": 4, "measure": "50 ml" },
+      { "ingredient_id": 24, "measure": "Top up" },
+      { "ingredient_id": 15, "measure": "1 slice" }
+    ]
+  },
+  {
+    "name": "Tequila Sunrise",
+    "category": "Tropical",
+    "description": "A visually stunning drink that looks like a sunrise.",
+    "instruction": "1. Pour tequila and orange juice into a glass over ice. 2. Add grenadine, which will sink to the bottom. 3. Do not stir.",
+    "alcoholic": true,
+    "percentage": 11,
+    "image_url": "https://example.com/tequila-sunrise.jpg",
+    "compositions": [
+      { "ingredient_id": 5, "measure": "50 ml" },
+      { "ingredient_id": 17, "measure": "100 ml" },
+      { "ingredient_id": 13, "measure": "15 ml" }
+    ]
+  },
+  {
+    "name": "Espresso Martini",
+    "category": "Classic",
+    "description": "A sophisticated, caffeinated cocktail.",
+    "instruction": "1. Shake all ingredients vigorously with ice to create a nice froth. 2. Strain into a chilled martini glass.",
+    "alcoholic": true,
+    "percentage": 19,
+    "image_url": "https://example.com/espresso-martini.jpg",
+    "compositions": [
+      { "ingredient_id": 3, "measure": "40 ml" },
+      { "ingredient_id": 27, "measure": "20 ml" },
+      { "ingredient_id": 28, "measure": "30 ml" },
+      { "ingredient_id": 11, "measure": "10 ml" }
+    ]
+  }
+]

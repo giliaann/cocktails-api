@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CocktailsModule } from './cocktails/cocktails.module';
 import { IngredientsModule } from './ingredients/ingredients.module';
+import { SeederModule } from './seeder/seeder.module';
 
 @Module({
   imports: [
@@ -18,7 +19,8 @@ import { IngredientsModule } from './ingredients/ingredients.module';
       synchronize: true
     }),
     CocktailsModule, 
-    IngredientsModule
+    IngredientsModule,
+    SeederModule
   ],
   controllers: [AppController],
   providers: [AppService],
