@@ -1,17 +1,20 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateIngredientDto } from './dto/create-ingredient.dto';
 import { UpdateIngredientDto } from './dto/update-ingredient.dto';
 import { Ingredient } from './entities/ingredient.entity';
 import { Repository } from 'typeorm'
 import { InjectRepository } from '@nestjs/typeorm';
 import { GetIngredientsFilterDto } from './dto/get-ingredients.dto';
+import { Composition } from 'src/cocktails/entities/composition.entity';
 
 @Injectable()
 export class IngredientsService {
 
   constructor(
     @InjectRepository(Ingredient)
-    private readonly ingredientRepository: Repository<Ingredient>
+    private readonly ingredientRepository: Repository<Ingredient>,
+    @InjectRepository(Composition)
+    private readonly compositionRepository: Repository<Composition>
   ) {}
 
   async create(createIngredientDto: CreateIngredientDto): Promise <Ingredient> {
@@ -84,6 +87,18 @@ export class IngredientsService {
   async remove(id: number): Promise <void> {
     
     const ingredient = await this.findOne(id);
-    await this.ingredientRepository.remove(ingredient)
+
+    if(!ingredient){
+      throw new NotFoundException(`Ingredient with ID ${id} not found`);
+    }
+
+    const compositions = await this.compositionRepository.find({where: {ingredient_id: id}})
+
+    if(compositions.length != 0){
+      throw new BadRequestException(`Cannot remove element, ingredient is used in ${compositions.length} compositions`)
+    }
+
+  await this.ingredientRepository.remove(ingredient)
+    
   }
 }

@@ -58,7 +58,7 @@ export class SeederService {
 
             await this.ingredientRepository.save(ingredientsToSave);
 
-            this.logger.log(`Added ${validatedIngredients.length} coktails to database`);
+            this.logger.log(`Added ${validatedIngredients.length} ingredients to database`);
         } catch(error) {
                 this.logger.error('Seeding ingredients failed, check seed files', error);
                 throw error
